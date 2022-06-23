@@ -246,7 +246,7 @@ export class HomesController {
 
     const lastDay = new Date(year, month, 0).getDate();
     const startDate = new Date(year, month - 1, 1);
-    const endDate = new Date(year, month - 1, lastDay);
+    const endDate = new Date(year, month - 1, lastDay, 23, 59, 59);
 
     try {
       const result = await this.homeTaskService.fetchHomeTaskStatistics(
