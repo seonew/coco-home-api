@@ -1,22 +1,22 @@
-version: "3"
+version: '3'
 services:
   mongo:
-    image: "mongo"
-    container_name: "coco-home-db"
+    image: 'mongo:4.2'
+    container_name: 'coco-home-db'
     ports:
-      - "${DB_PORT}:${DB_PORT}"
+      - '${DB_PORT}:${DB_PORT}'
     command: mongod --auth --port ${DB_PORT}
     volumes:
       - mongo-storage:/data/db
     networks:
       - coco-home-network
   coco-home-api:
-    container_name: "coco-home-api"
+    container_name: 'coco-home-api'
     build:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - "${PORT}:${PORT}"
+      - '${PORT}:${PORT}'
     networks:
       - coco-home-network
 networks:
