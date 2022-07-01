@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpStatus,
   Patch,
   Req,
@@ -29,6 +30,24 @@ export class UsersController {
     try {
       const updatedHomeId = await this.userService.updateUser(homeId, userId);
       return response.status(HttpStatus.OK).json(updatedHomeId);
+    } catch (error) {
+      console.log(error);
+      response.status(error.status).json();
+    }
+  }
+
+  @Get()
+  async getUser(@Req() request, @Res() response) {
+    const userId = request.userId;
+
+    try {
+      const result = await this.userService.findOne(userId);
+      const user = {
+        name: result.name,
+        userId: result.id,
+        imgUrl: result.avatarUrl,
+      };
+      return response.status(HttpStatus.OK).json(user);
     } catch (error) {
       console.log(error);
       response.status(error.status).json();
