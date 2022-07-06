@@ -29,7 +29,7 @@ export class RefrigeratorFoodsService {
         });
 
       if (refrigeratorFoods.length === 0) {
-        return {};
+        return null;
       }
 
       const resultArray = refrigeratorFoods.map((item) => {
