@@ -110,7 +110,7 @@ export class HomeTasksService {
       const key = '$' + target;
       const response = await this.aggregate(homeId, startDate, endDate, key);
 
-      const result = { key: [], count: [] };
+      const result = { keys: [], counts: [] };
       if (!response) {
         return result;
       }
@@ -122,8 +122,8 @@ export class HomeTasksService {
         }
 
         if (_id !== null) {
-          result.key.push(_id);
-          result.count.push(item.count);
+          result.keys.push(_id);
+          result.counts.push(item.count);
         }
       });
 
